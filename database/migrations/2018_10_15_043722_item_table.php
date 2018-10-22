@@ -16,7 +16,9 @@ class ItemTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name'); //商品名
-            $table->string('img'); // 商品画像
+            $table->string('img1'); // 商品画像1
+            $table->string('img2'); // 商品画像2
+            $table->string('img3'); // 商品画像3
             $table->string('description'); // 商品の説明文
             $table->unsignedInteger('price'); //　商品の価格
             $table->string('size'); //　商品のサイズ
