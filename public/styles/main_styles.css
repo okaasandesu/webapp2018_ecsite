@@ -1148,6 +1148,7 @@ section
 }
 .add_to_cart_button
 {
+	color: #ffffff;
 	width: 100%;
 	visibility: hidden;
 	opacity: 0;
@@ -1684,3 +1685,4 @@ section
 {
 	color: #fe4c50;
 }
+

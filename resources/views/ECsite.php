@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/custom.css">
 </head>
 
 <body>
@@ -252,7 +253,12 @@
 										<div class="product_price"><?=$item->price?>円</div>
 									</div>
 								</div>
-								<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+								<form action="/cart/add" method="post">
+								<?= csrf_field()?>
+								<input type="hidden" name="item_id" value="<?=$item->id?>">
+								<input type="submit" class="red_button add_to_cart_button" value="カートに追加">
+									<!-- <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div> -->
+								</form>
 							</div>
 						<?php endforeach; ?>
 						<!-- Product 1 -->
