@@ -17,3 +17,12 @@ th{
   input{
    color:#ffffff   
   }
+
+  .blue_button{
+    background:	#1e1eff;
+    
+  }
+  .blue_button:hover
+{
+	background: #7c7cf8 !important;
+}

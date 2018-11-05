@@ -42,13 +42,44 @@ Route::post("/cart/add",function(){
     // フォームから IDを読み込みDBへ問い合わせる
     $id = request()->get("item_id");
     $items = DB::select("SELECT * FROM items where id = ?",[$id]);
+    $flag=false;
+    $amount=request()->get("");
     if(count($items) > 0){
         // セッションにデータを追加して格納
         $cartItems = session()->get("CART_ITEMS",[]);
-        $cartItems[] = $items[0];
+        foreach($cartItems as $value){ 
+            if($value->id==$items[0]){
+                $flag=true;
+            } 
+        }
+        
+        if($flag==false){
+            $cartItems[] = [
+                "item" => $items[0],
+                "amount" => $amount
+            ];
+        }else{
+            foreach($cartItems as $value){ 
+                if($value->id==$items[0]){
+                    "amount" => $amount+$value->amount
+                } 
+            }
+        }
         session()->put("CART_ITEMS",$cartItems);
         return redirect("/cart/list");    
     }else{
         return abort(404);
     }        
+});
+
+Route::post("/cart/clear",function(){
+    // カートを空にする
+    session()->forget('CART_ITEMS');
+    return redirect("/cart/list");    
+});
+
+Route::post("/cart/clear_details",function(){
+    // 一つの商品を空にする
+    session()->forget('CART_ITEMS');
+    return redirect("/cart/list");    
 });
