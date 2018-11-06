@@ -225,7 +225,7 @@ jQuery(document).ready(function($)
 				var x = parseInt(value.text());
 				if(x > 1)
 				{
-					value.text(x - 1);
+					value.text(x - 1);	
 				}
 			});
 		}

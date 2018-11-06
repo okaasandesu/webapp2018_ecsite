@@ -246,6 +246,7 @@
 						<form action="/cart/add" method="post">
 								<?= csrf_field()?>
 								<input type="hidden" name="item_id" value="<?=$item->id?>">
+								<input type="hidden" id="quantity" name="amount" value="1" >
 								<input type="submit" class="red_button add_to_cart_button" value="カートに追加">
 									<!-- <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div> -->
 						</form>
@@ -536,6 +537,7 @@
 <script src="/plugins/easing/easing.js"></script>
 <script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="/js/single_custom.js"></script>
+<script src="/js/jquery-item.js"></script>
 </body>
 
 </html>

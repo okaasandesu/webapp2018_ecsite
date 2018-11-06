@@ -190,11 +190,10 @@
 		</div>
         <table class="table table-striped table-bordered">
         <tr><th>商品名</th><th class="suuryou_width">数量</th></tr>
-        <?php foreach($cartItems as $cartitem): ?>
-            <tr><td><?=$cartitem->name?></td><td>B-1</td><td>削除</td></tr>									
-		<?php endforeach; ?>
+        <?php foreach($cartItems as $item=>$value): ?>
+            <tr><td><?=$value['item']->name?></td><td><?=$value['amount']?></td><td>削除</td></tr>                                    
+        <?php endforeach; ?>
 		</table>
-
 		<form action="/cart/clear" method="post">
 			<?= csrf_field()?>
 			<input type="hidden" name="reflesh" value="">

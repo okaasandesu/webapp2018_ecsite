@@ -43,12 +43,15 @@ Route::post("/cart/add",function(){
     $id = request()->get("item_id");
     $items = DB::select("SELECT * FROM items where id = ?",[$id]);
     $flag=false;
-    $amount=request()->get("");
+    $amount=request()->get("amount");
+
     if(count($items) > 0){
         // セッションにデータを追加して格納
+
         $cartItems = session()->get("CART_ITEMS",[]);
+        //カートに追加する商品と同じものがあるか探す
         foreach($cartItems as $value){ 
-            if($value->id==$items[0]){
+            if($value==$items[0]){
                 $flag=true;
             } 
         }
@@ -61,7 +64,9 @@ Route::post("/cart/add",function(){
         }else{
             foreach($cartItems as $value){ 
                 if($value->id==$items[0]){
-                    "amount" => $amount+$value->amount
+                    $cartItems[] = [
+                        //"amount" => $amount+($value->amount)
+                    ];
                 } 
             }
         }
