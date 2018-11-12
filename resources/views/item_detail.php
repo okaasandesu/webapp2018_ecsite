@@ -180,9 +180,7 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
+						<li><a href="/ECsite">Home</a></li>
 					</ul>
 				</div>
 
@@ -221,21 +219,6 @@
 					</div>
 					<!-- <div class="original_price">$629.99</div> -->
 					<div class="product_price"><?=$item->price?>円</div>
-					<!-- <ul class="star_rating">
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-					</ul> -->
-					<!-- <div class="product_color">
-						<span>Select Color:</span>
-						<ul>
-							<li style="background: #e54e5d"></li>
-							<li style="background: #252525"></li>
-							<li style="background: #60b3f3"></li>
-						</ul>
-					</div> -->
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<div class="quantity_selector">

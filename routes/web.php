@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/ECsite', function () {
     $items = DB::select("SELECT * FROM items");
     return view("ECsite",[
@@ -32,9 +33,10 @@ Route::get("/item/{id}",function($id){
 Route::get("/cart/list",function(){
     // セッションからカートの情報を取り出す
     $cartItems = session()->get("CART_ITEMS",[]);
-
+    
     return view("cart_list", [
         "cartItems" => $cartItems
+        
     ]);
 });
 
@@ -43,15 +45,21 @@ Route::post("/cart/add",function(){
     $id = request()->get("item_id");
     $items = DB::select("SELECT * FROM items where id = ?",[$id]);
     $flag=false;
-    $amount=request()->get("amount");
-
+    $amount=intval(request()->get("amount"));
+    
     if(count($items) > 0){
         // セッションにデータを追加して格納
 
         $cartItems = session()->get("CART_ITEMS",[]);
+        //foreach($cartItems as $cartItem=>$value){
+          //  $arraycartItem += json_decode( $value['item'] , true ) ;
+        //}
+        
+        
         //カートに追加する商品と同じものがあるか探す
-        foreach($cartItems as $value){ 
-            if($value==$items[0]){
+        foreach($cartItems as $array=>$value){ 
+            //ここのif文のキャストの仕方が不明
+            if((array)$value['item']->id==(array)$items[0]){
                 $flag=true;
             } 
         }
@@ -62,11 +70,12 @@ Route::post("/cart/add",function(){
                 "amount" => $amount
             ];
         }else{
-            foreach($cartItems as $value){ 
-                if($value->id==$items[0]){
-                    $cartItems[] = [
-                        //"amount" => $amount+($value->amount)
-                    ];
+            foreach($cartItems as $array=>$value){ 
+                //ここのif文のキャストの仕方が不明
+                if((array)$value['item']->id==(array)$items[0]){
+                    
+                    $array->$value['amount'] = $amount+$value['amount']->amount;
+                    
                 } 
             }
         }

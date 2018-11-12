@@ -180,20 +180,34 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
+						<li><a href="/ECsite">Home</a></li>
 					</ul>
 				</div>
 
 			</div>
 		</div>
         <table class="table table-striped table-bordered">
-        <tr><th>商品名</th><th class="suuryou_width">数量</th></tr>
+        <tr><th>商品名</th><th class="suuryou_width">数量</th><th class="suuryou_width"></th></tr>
         <?php foreach($cartItems as $item=>$value): ?>
-            <tr><td><?=$value['item']->name?></td><td><?=$value['amount']?></td><td>削除</td></tr>                                    
+            <tr>
+				<td>
+					<?=$value['item']->name?>
+				</td>
+				<td>
+					<?=$value['amount']?>
+				</td>
+				<td>
+					<form action="/cart/clear_details" method="post">
+					<?= csrf_field()?>
+						<input type="hidden" name="item_id" value="<?=$value['item']->id?>">
+						<input type="submit"  value="削除">
+					</form>
+				</td>
+			</tr>                                    
         <?php endforeach; ?>
 		</table>
+		<?var_dump($cartItems);?>
+		
 		<form action="/cart/clear" method="post">
 			<?= csrf_field()?>
 			<input type="hidden" name="reflesh" value="">
