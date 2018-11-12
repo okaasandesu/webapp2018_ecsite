@@ -187,39 +187,33 @@
 			</div>
 		</div>
 		
-        <table class="table table-striped table-bordered">
-        <tr><th>商品名</th><th class="suuryou_width">数量</th><th class="suuryou_width"></th></tr>
-        <?php foreach($cartItems as $item=>$value): ?>
-            <tr>
-				<td>
-					<?=$value['item']->name?>
-				</td>
-				<td>
-					<?=$value['amount']?>
-				</td>
-				<td>
-					<form action="/cart/clear_details" method="post">
-					<?= csrf_field()?>
-						<input type="hidden" name="item_id" value="<?=$value['item']->id?>">
-						<input type="submit"  value="削除">
-					</form>
-				</td>
-			</tr>                                    
-        <?php endforeach; ?>
-		</table>
-		
-		<form action="/cart/clear" method="post">
-			<?= csrf_field()?>
-			<input type="hidden" name="reflesh" value="">
-			<input type="submit" class="blue_button red_button add_to_cart_button" value="カートを空にする">
-		</form>
-		
-			<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-				<div class="red_button add_to_cart_button"><a href="/order">レジへ進む</a></div>
-						<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
-				</div>
-			</div>
-		
+    <form action="/order" method="POST">
+    <?= csrf_field()?>
+        <!-- 名前入力エリア -->
+        <div class="form-group">
+            <label>名前</label>
+            <input type="text" class="form-control" name="name" placeholder="name" required>
+        </div>
+        <!-- 住所入力エリア -->
+        <div class="form-group">
+            <label>住所</label>
+            <input type="text" class="form-control" name="address" placeholder="address" required >
+        </div>
+        <!-- 電話番号入力エリア -->
+        <div class="form-group">
+            <label>電話番号</label>
+            <input type="text" class="form-control" name="tel" placeholder="tel" required>
+        </div>
+        <!-- Eメール入力エリア -->
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        
+        
+        <!-- 送信ボタン -->
+        <input type="submit" class="red_button add_to_cart_button" value="注文">
+    </form>
 	</div>
 
 	

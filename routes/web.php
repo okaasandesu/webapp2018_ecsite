@@ -33,10 +33,8 @@ Route::get("/item/{id}",function($id){
 Route::get("/cart/list",function(){
     // セッションからカートの情報を取り出す
     $cartItems = session()->get("CART_ITEMS",[]);
-    
     return view("cart_list", [
         "cartItems" => $cartItems
-        
     ]);
 });
 
@@ -51,15 +49,11 @@ Route::post("/cart/add",function(){
         // セッションにデータを追加して格納
 
         $cartItems = session()->get("CART_ITEMS",[]);
-        //foreach($cartItems as $cartItem=>$value){
-          //  $arraycartItem += json_decode( $value['item'] , true ) ;
-        //}
-        
         
         //カートに追加する商品と同じものがあるか探す
         foreach($cartItems as $array=>$value){ 
-            //ここのif文のキャストの仕方が不明
-            if((array)$value['item']->id==(array)$items[0]){
+            
+            if($value['item']->id==$items[0]->id){
                 $flag=true;
             } 
         }
@@ -71,10 +65,10 @@ Route::post("/cart/add",function(){
             ];
         }else{
             foreach($cartItems as $array=>$value){ 
-                //ここのif文のキャストの仕方が不明
-                if((array)$value['item']->id==(array)$items[0]){
+                
+                if($value['item']->id==$items[0]->id){
                     
-                    $array->$value['amount'] = $amount+$value['amount']->amount;
+                    $cartItems[$array]['amount'] = (int)($amount+$cartItems[$array]['amount']);
                     
                 } 
             }
@@ -94,6 +88,44 @@ Route::post("/cart/clear",function(){
 
 Route::post("/cart/clear_details",function(){
     // 一つの商品を空にする
-    session()->forget('CART_ITEMS');
+
+    $id = request()->get("item_id");
+    $cartItems = session()->get("CART_ITEMS",[]);
+    $i=0;
+    foreach($cartItems as $array=>$value){ 
+                
+        if($value['item']->id==$id){
+            array_splice($cartItems,$i,1);
+            //$cartItems[$array]['amount'] = (int)($amount+$cartItems[$array]['amount']);
+            
+        } 
+        $i++;
+    }
+    
+    session()->put("CART_ITEMS",$cartItems);
     return redirect("/cart/list");    
+});
+
+Route::get("/order",function(){
+    return view("order");
+});
+
+Route::post("/order",function(){
+
+    // ここで カートの中身をDBに保存する    
+    DB::insert("INSERT into orders (name,address,tel,email,orders) VALUES (?,?,?,?,?)",[
+        request()->get("name"),
+        request()->get("address"),
+        request()->get("tel"),
+        request()->get("email"),
+        json_encode(session()->get("CART_ITEMS"))
+    ]);
+    
+    session()->forget("CART_ITEMS"); // ここでカートを空に
+   
+    return redirect("/order/thanks");
+});
+
+Route::get("/order/thanks",function(){
+    return view("thanks");
 });

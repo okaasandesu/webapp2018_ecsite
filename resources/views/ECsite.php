@@ -256,6 +256,7 @@
 								<form action="/cart/add" method="post">
 								<?= csrf_field()?>
 								<input type="hidden" name="item_id" value="<?=$item->id?>">
+								<input type="hidden" name="amount" value="1">
 								<input type="submit" class="red_button add_to_cart_button" value="カートに追加">
 									<!-- <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div> -->
 								</form>
