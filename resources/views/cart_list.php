@@ -186,7 +186,10 @@
 
 			</div>
 		</div>
-		
+		<?php if($cartItems==[]){?>
+			<p>カートに商品がありません<p><?php
+		}else{
+		?>
         <table class="table table-striped table-bordered">
         <tr><th>商品名</th><th class="suuryou_width">数量</th><th class="suuryou_width"></th></tr>
         <?php foreach($cartItems as $item=>$value): ?>
@@ -219,7 +222,7 @@
 						<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
 				</div>
 			</div>
-		
+		<?php } ?>
 	</div>
 
 	
