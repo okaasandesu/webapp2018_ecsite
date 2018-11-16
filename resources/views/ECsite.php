@@ -18,9 +18,7 @@
 
 <body>
 
-<div class="test2"></div>
 
-<div class="test1"></div>
 
 <div class="super_container">
 
