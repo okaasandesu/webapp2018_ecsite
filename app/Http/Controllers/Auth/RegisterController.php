@@ -135,7 +135,7 @@ class RegisterController extends Controller
   }
   public function mainRegister(Request $request)
   {
-    $user = User::where('email_verify_token',$request->)->first();
+    $user = User::where('email_verify_token',$request->email_token)->first();
     $user->status = config('const.USER_STATUS.REGISTER');
     $user->name = $request->name;
     $user->name_pronunciation = $request->name_pronunciation;
