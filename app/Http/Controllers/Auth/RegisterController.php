@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
-    public function preCheck(Request $request){
+    public function pre_check(Request $request){
         $this->validator($request->all())->validate();
         //flash data
         $request->flashOnly( 'email');
@@ -135,7 +135,7 @@ class RegisterController extends Controller
   }
   public function mainRegister(Request $request)
   {
-    $user = User::where('email_verify_token',$request->email_token)->first();
+    $user = User::where('email_verify_token',$request->)->first();
     $user->status = config('const.USER_STATUS.REGISTER');
     $user->name = $request->name;
     $user->name_pronunciation = $request->name_pronunciation;
