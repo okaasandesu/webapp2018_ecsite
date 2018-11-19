@@ -112,8 +112,19 @@ Route::get("/order",function(){
 
 Route::post("/order",function(){
 
+
+    if(request()->get("name") == ""){
+        session()->put("FORM_MESSAGE","名前を入力してください");
+        return redirect("/order");
+    }
+    if(request()->get("address") == ""){
+        session()->put("FORM_MESSAGE","住所を入力してください");
+        return redirect("/order");
+    }
+    
     // ここで カートの中身をDBに保存する    
     DB::insert("INSERT into orders (name,address,tel,email,orders) VALUES (?,?,?,?,?)",[
+        
         request()->get("name"),
         request()->get("address"),
         request()->get("tel"),
