@@ -50,20 +50,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-//            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
     public function pre_check(Request $request){
-        $this->validator($request->all())->validate();
-        //flash data
-        $request->flashOnly( 'email');
-        $bridge_request = $request->all();
-        // password マスキング
-        $bridge_request['password_mask'] = '******';
-        return view('auth.register_check')->with($bridge_request);
-    }
+      $this->validator($request->all())->validate();
+      //flash data
+      $request->flashOnly( 'email');
+
+      $bridge_request = $request->all();
+      // password マスキング
+      $bridge_request['password_mask'] = '******';
+
+      return view('auth.register_check')->with($bridge_request);
+  }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -98,7 +99,9 @@ class RegisterController extends Controller
     {
       return view('auth.main.register')->with('message', '無効なトークンです。');
     } else {
+
       $user = User::where('email_verify_token', $email_token)->first();
+      
       // 本登録済みユーザーか
       if ($user->status == config('const.USER_STATUS.REGISTER')) //REGISTER=1
       {
@@ -136,6 +139,9 @@ class RegisterController extends Controller
   public function mainRegister(Request $request)
   {
     $user = User::where('email_verify_token',$request->email_token)->first();
+    if($user==null){
+      return('db失敗');
+    }
     $user->status = config('const.USER_STATUS.REGISTER');
     $user->name = $request->name;
     $user->name_pronunciation = $request->name_pronunciation;

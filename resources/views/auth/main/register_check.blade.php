@@ -7,6 +7,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register.main.registered') }}">
                     <?= csrf_field()?>
+                    <input type="hidden" name="email_token" value="{{ $email_token }}">
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">名前</label>
@@ -36,7 +37,7 @@
                             </div>
                         </div>
 
-
+<?php var_dump($email_token);?>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
