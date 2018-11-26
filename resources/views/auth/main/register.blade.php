@@ -4,7 +4,7 @@
 
 <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 yohaku-ue">
+            <div class="col-md-10 yohaku-ue">
                 <div class="card">
                     <div class="card-header">本会員登録</div>
 
@@ -58,7 +58,7 @@
                                 <div class="form-group row">
                                     <label for="name_pronunciation"
                                            class="col-md-4 col-form-label text-md-right">生年月日</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <select id="birth_year" class="form-control" name="birth_year">
@@ -73,9 +73,9 @@
                                                         <strong>{{ $errors->first('birth_year') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>年
+                                            </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <select id="birth_month" class="form-control" name="birth_month">
                                                     <option value="">--</option>
                                                     @for ($i = 1; $i <= 12; $i++)
@@ -88,9 +88,9 @@
                                                         <strong>{{ $errors->first('birth_month') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>月
+                                            </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <select id="birth_day" class="form-control" name="birth_day">
                                                     <option value="">--</option>
                                                     @for ($i = 1; $i <= 31; $i++)
@@ -104,7 +104,7 @@
                                                         <strong>{{ $errors->first('birth_day') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>日
+                                            </div>
                                         </div>
 
                                         <div class="row col-md-6 col-md-offset-4">
@@ -114,6 +114,24 @@
                                                 </span>
                                             @endif
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="name_pronunciation"
+                                           class="col-md-4 col-form-label text-md-right">フリガナ</label>
+
+                                    <div class="col-md-6">
+                                        <input id="name_pronunciation" type="text"
+                                               class="form-control{{ $errors->has('name_pronunciation') ? ' is-invalid' : '' }}"
+                                               name="name_pronunciation" value="{{ old('name_pronunciation') }}"
+                                               required>
+
+                                        @if ($errors->has('name_pronunciation'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('name_pronunciation') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 
