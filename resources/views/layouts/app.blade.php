@@ -33,11 +33,11 @@
 
 <!-- Header -->
 
-<header class="header trans_300">
+<!-- <header class="header trans_300"> -->
 
     <!-- Top Navigation -->
 
-    <div class="top_nav">
+    <!-- <div class="top_nav">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -45,10 +45,10 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <div class="top_nav_right">
-                        <ul class="top_nav_menu">
+                        <ul class="top_nav_menu"> -->
 
                             <!-- Currency / Language / My Account -->
-                            <li class="account">
+                            <!-- <li class="account">
                                 <a href="#">
                                     My Account
                                     <i class="fa fa-angle-down"></i>
@@ -64,10 +64,10 @@
             </div>
         </div>
     </div>
-
+ -->
     <!-- Main Navigation -->
 
-    <div class="main_nav_container">
+<!--     <div class="main_nav_container">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-right">
@@ -95,7 +95,7 @@
 
 </header>
 </div>
-    <div id="app">
+ -->    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
