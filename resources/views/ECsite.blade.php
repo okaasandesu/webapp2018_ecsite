@@ -91,7 +91,7 @@
 								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a href="#">
+									<a href="/cart/list">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 									</a>
 								</li>
@@ -148,9 +148,9 @@
 					<div class="new_arrivals_sorting">
 						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
 							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".L">Lサイズ</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".M">Mサイズ</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".S">Sサイズ</li>
 						</ul>
 					</div>
 				</div>
@@ -162,7 +162,7 @@
 						<!--ループ Product 3 -->
 
 						<?php foreach($items as $item): ?>
-							<div class="product-item women">
+							<div class="product-item <?=$item->size?>">
 								<div class="product product_filter">
 									<div class="product_image">
 										<img src="<?=$item->img1?>" alt="">
@@ -241,7 +241,7 @@
 						<ul class="footer_nav">
 							<li><a href="#">Blog</a></li>
 							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
+							<li><a href="#">Contact us</a></li>
 						</ul>
 					</div>
 				</div>

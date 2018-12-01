@@ -91,7 +91,7 @@
 								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a href="#">
+									<a href="/cart/list">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 									</a>
 								</li>
@@ -224,7 +224,7 @@
 						<ul class="footer_nav">
 							<li><a href="#">Blog</a></li>
 							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
+							<li><a href="#">Contact us</a></li>
 						</ul>
 					</div>
 				</div>
