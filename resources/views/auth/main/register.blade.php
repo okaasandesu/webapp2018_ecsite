@@ -105,6 +105,7 @@
                                                     </span>
                                                 @endif
                                             </div>
+
                                         </div>
 
                                         <div class="row col-md-6 col-md-offset-4">
@@ -118,23 +119,17 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="name_pronunciation"
-                                           class="col-md-4 col-form-label text-md-right">フリガナ</label>
-
-                                    <div class="col-md-6">
-                                        <input id="name_pronunciation" type="text"
-                                               class="form-control{{ $errors->has('name_pronunciation') ? ' is-invalid' : '' }}"
-                                               name="name_pronunciation" value="{{ old('name_pronunciation') }}"
-                                               required>
-
-                                        @if ($errors->has('name_pronunciation'))
-                                            <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('name_pronunciation') }}</strong>
-                                            </span>
-                                        @endif
+                                    <label class="col-md-4 col-form-label text-md-right">郵便番号</label>
+                                    <div class="col-md-2">
+                                        <input type="tel" class="form-control" name="zip_code" value="{{ old('zip_code') }}" placeholder="123-456"required>
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right">住所</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                                    </div>
+                                </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">

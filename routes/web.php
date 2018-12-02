@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,17 +109,44 @@ Route::post("/cart/clear_details",function(){
 });
 
 Route::get("/order",function(){
+    
+    $user = Auth::user();
+    $cartItems = session()->get("CART_ITEMS",[]);
+    $total=0;
+
+    foreach($cartItems as $array=>$value){ 
+        $total+=(($value['item']->price)*($value['amount']));
+    }
+
+    if(empty($user)){
+        return view("auth/login");
+    }else{
+        return view("order",[
+            "user" => $user,
+            "total"=>$total
+        ]
+    
+    );
+    }
     return view("order");
 });
 
 Route::post("/order",function(){
 
+    $user = Auth::user();
+    $cartItems = session()->get("CART_ITEMS",[]);
+    $total=0;
+
+    foreach($cartItems as $array=>$value){ 
+        $total+=(($value['item']->price)*($value['amount']));
+    }
     // ここで カートの中身をDBに保存する    
-    DB::insert("INSERT into orders (name,address,tel,email,orders) VALUES (?,?,?,?,?)",[
-        request()->get("name"),
-        request()->get("address"),
-        request()->get("tel"),
-        request()->get("email"),
+    DB::insert("INSERT into orders (name,zip_code,address,price,email,orders) VALUES (?,?,?,?,?,?)",[
+        $user->name,
+        $user->zip_code,
+        $user->address,
+        $total,
+        $user->email,
         json_encode(session()->get("CART_ITEMS"))
     ]);
     

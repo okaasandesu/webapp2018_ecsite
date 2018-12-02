@@ -125,6 +125,8 @@ class RegisterController extends Controller
       'birth_year' => 'required|numeric',
       'birth_month' => 'required|numeric',
       'birth_day' => 'required|numeric',
+      'zip_code' => 'required|string',
+      'address' => 'required|string'
     ]);
     //データ保持用
     $email_token = $request->email_token;
@@ -134,6 +136,8 @@ class RegisterController extends Controller
     $user->birth_year = $request->birth_year;
     $user->birth_month = $request->birth_month;
     $user->birth_day = $request->birth_day;
+    $user->zip_code = $request->zip_code;
+    $user->address = $request->address;
     return view('auth.main.register_check', compact('user','email_token'));
   }
   public function mainRegister(Request $request)
@@ -148,6 +152,8 @@ class RegisterController extends Controller
     $user->birth_year = $request->birth_year;
     $user->birth_month = $request->birth_month;
     $user->birth_day = $request->birth_day;
+    $user->zip_code = $request->zip_code;
+    $user->address = $request->address;
     $user->save();
     return view('auth.main.registered');
   }

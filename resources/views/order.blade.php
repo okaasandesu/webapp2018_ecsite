@@ -143,33 +143,30 @@
 			</div>
 		</div>
 		
-    <form action="/order" method="POST">
-    <?= csrf_field()?>
-        <!-- 名前入力エリア -->
-        <div class="form-group">
-            <label>名前</label>
-            <input type="text" class="form-control" name="name" placeholder="name" required>
-        </div>
-        <!-- 住所入力エリア -->
-        <div class="form-group">
-            <label>住所</label>
-            <input type="text" class="form-control" name="address" placeholder="address" required >
-        </div>
-        <!-- 電話番号入力エリア -->
-        <div class="form-group">
-            <label>電話番号</label>
-            <input type="text" class="form-control" name="tel" placeholder="tel" required>
-        </div>
-        <!-- Eメール入力エリア -->
-        <div class="form-group">
-            <label>Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Email" required>
-        </div>
-        
-        
-        <!-- 送信ボタン -->
-        <input type="submit" class="red_button add_to_cart_button" value="注文">
-    </form>
+	<form action="/order" method="POST">
+	<?= csrf_field()?>
+		<table class="table table-striped table-bordered">
+			<tbody>
+				<tr>
+					<th colspan="2">ご注文情報</th>
+				</tr>
+				<tr>
+					<th class="suuryou_width">お名前</th>
+					<td><?=$user->name?></td>
+				</tr>
+				<tr>
+					<th class="suuryou_width">お届け先住所</th>
+					<td>〒<?=$user->zip_code?>,<?=$user->address?></td>
+				</tr>
+				<tr>
+					<th class="suuryou_width">ご請求金額</th>
+					<td><?=$total?>円</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 送信ボタン -->
+		<input type="submit" class="red_button add_to_cart_button" value="注文">
+	</form>
 	</div>
 
 	
