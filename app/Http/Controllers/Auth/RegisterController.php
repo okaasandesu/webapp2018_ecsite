@@ -125,9 +125,12 @@ class RegisterController extends Controller
       'birth_year' => 'required|numeric',
       'birth_month' => 'required|numeric',
       'birth_day' => 'required|numeric',
-      'zip_code' => 'required|string',
+      'zip_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/',
       'address' => 'required|string'
-    ]);
+      ],[
+        'zip_code.regex'=>'例：123-4567'
+      ]
+    );
     //データ保持用
     $email_token = $request->email_token;
     $user = new User();

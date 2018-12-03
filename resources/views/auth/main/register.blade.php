@@ -120,8 +120,13 @@
 
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-md-right">郵便番号</label>
-                                    <div class="col-md-2">
-                                        <input type="tel" class="form-control" name="zip_code" value="{{ old('zip_code') }}" placeholder="123-456"required>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}" name="zip_code" value="{{ old('zip_code') }}" placeholder="123-456"required>
+                                        @if ($errors->has('zip_code'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('zip_code') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">

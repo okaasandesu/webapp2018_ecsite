@@ -41,7 +41,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">郵便番号</label>
                             <div class="col-md-6">
-                                <span class=""><?=$user->zip_code?></span>
+                            <div class="registerletter"><?=$user->zip_code?></div>
                                 <input type="hidden" name="zip_code" value="<?=$user->zip_code?>">
                             </div>
                         </div>
