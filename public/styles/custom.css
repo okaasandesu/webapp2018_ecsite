@@ -26,3 +26,20 @@ th{
 {
 	background: #7c7cf8 !important;
 }
+
+.yohaku-ue{
+  margin-top: 200px;
+}
+
+.delete_button{
+  width: 40px;
+  height: 30px;
+}
+
+.table_letter{
+  vertical-align: middle;
+}
+
+.registerletter{
+  padding-top: 7px;
+}

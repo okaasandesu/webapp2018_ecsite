@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-<title>cart_list</title>
+<title>item_detail</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Colo Shop Template">
@@ -32,7 +32,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<div class="top_nav_left">free shipping on all u.s orders over $50</div>
+						<div class="top_nav_left">アクアリウム用レイアウトストーン専門店</div>
 					</div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
@@ -41,28 +41,7 @@
 								<!-- Currency / Language / My Account -->
 
 								<li class="currency">
-									<a href="#">
-										usd
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="currency_selection">
-										<li><a href="#">cad</a></li>
-										<li><a href="#">aud</a></li>
-										<li><a href="#">eur</a></li>
-										<li><a href="#">gbp</a></li>
-									</ul>
-								</li>
-								<li class="language">
-									<a href="#">
-										English
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="language_selection">
-										<li><a href="#">French</a></li>
-										<li><a href="#">Italian</a></li>
-										<li><a href="#">German</a></li>
-										<li><a href="#">Spanish</a></li>
-									</ul>
+									
 								</li>
 								<li class="account">
 									<a href="#">
@@ -70,8 +49,25 @@
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="account_selection">
-										<li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-										<li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+										@guest
+											<li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true">{{ __('Login') }}</i></a></li>
+											@if (Route::has('register'))
+												<li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{ __('Register') }}</a></li>
+											@endif
+										@else
+											<li>
+											<div class="">
+												<a class="dropdown-item" href="{{ route('logout') }}"
+													onclick="event.preventDefault();
+														document.getElementById('logout-form').submit();">
+													{{ __('Logout') }}
+												</a>
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+													@csrf
+												</form>
+											</div>
+											</li>
+										@endguest
 									</ul>
 								</li>
 							</ul>
@@ -88,24 +84,15 @@
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="#">colo<span>shop</span></a>
+							<a href="#">stone<span>shop</span></a>
 						</div>
 						<nav class="navbar">
-							<ul class="navbar_menu">
-								<li><a href="index.html">home</a></li>
-								<li><a href="#">shop</a></li>
-								<li><a href="#">promotion</a></li>
-								<li><a href="#">pages</a></li>
-								<li><a href="#">blog</a></li>
-								<li><a href="contact.html">contact</a></li>
-							</ul>
 							<ul class="navbar_user">
 								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a href="#">
+									<a href="/cart/list">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">2</span>
 									</a>
 								</li>
 							</ul>
@@ -121,56 +108,25 @@
 	</header>
 
 	<div class="fs_menu_overlay"></div>
-
-	<!-- Hamburger Menu -->
-
 	<div class="hamburger_menu">
 		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
 		<div class="hamburger_menu_content text-right">
 			<ul class="menu_top_nav">
-				<li class="menu_item has-children">
-					<a href="#">
-						usd
-						<i class="fa fa-angle-down"></i>
-					</a>
-					<ul class="menu_selection">
-						<li><a href="#">cad</a></li>
-						<li><a href="#">aud</a></li>
-						<li><a href="#">eur</a></li>
-						<li><a href="#">gbp</a></li>
-					</ul>
-				</li>
-				<li class="menu_item has-children">
-					<a href="#">
-						English
-						<i class="fa fa-angle-down"></i>
-					</a>
-					<ul class="menu_selection">
-						<li><a href="#">French</a></li>
-						<li><a href="#">Italian</a></li>
-						<li><a href="#">German</a></li>
-						<li><a href="#">Spanish</a></li>
-					</ul>
-				</li>
+			<li class="menu_item"><a href="/ECsite">home</a></li>
 				<li class="menu_item has-children">
 					<a href="#">
 						My Account
 						<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="menu_selection">
-						<li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-						<li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+						<li><a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+						<li><a href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
 					</ul>
 				</li>
-				<li class="menu_item"><a href="#">home</a></li>
-				<li class="menu_item"><a href="#">shop</a></li>
-				<li class="menu_item"><a href="#">promotion</a></li>
-				<li class="menu_item"><a href="#">pages</a></li>
-				<li class="menu_item"><a href="#">blog</a></li>
-				<li class="menu_item"><a href="#">contact</a></li>
 			</ul>
 		</div>
 	</div>
+
 
 	<div class="container single_product_container">
 		<div class="row">
@@ -186,34 +142,60 @@
 
 			</div>
 		</div>
-		
-    <form action="/order" method="POST">
-    <?= csrf_field()?>
-        <!-- 名前入力エリア -->
-        <div class="form-group">
-            <label>名前</label>
-            <input type="text" class="form-control" name="name" placeholder="name" required>
-        </div>
-        <!-- 住所入力エリア -->
-        <div class="form-group">
-            <label>住所</label>
-            <input type="text" class="form-control" name="address" placeholder="address" required >
-        </div>
-        <!-- 電話番号入力エリア -->
-        <div class="form-group">
-            <label>電話番号</label>
-            <input type="text" class="form-control" name="tel" placeholder="tel" required>
-        </div>
-        <!-- Eメール入力エリア -->
-        <div class="form-group">
-            <label>Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Email" required>
-        </div>
-        
-        
-        <!-- 送信ボタン -->
-        <input type="submit" class="red_button add_to_cart_button" value="注文">
-    </form>
+
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="single_product_pics">
+					<div class="row">
+						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+							<div class="single_product_thumbnails">
+								<ul>
+									<li class="active"><img src="<?=$item->img1?>" alt="" data-image=<?=$item->img1?>></li>
+									<li><img src="<?=$item->img2?>" alt="" data-image="<?=$item->img2?>"></li>
+									<li><img src="<?=$item->img3?>" alt="" data-image="<?=$item->img3?>"></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-9 image_col order-lg-2 order-1">
+							<div class="single_product_image">
+								<div class="single_product_image_background" style="background-image:url(<?=$item->img1?>)"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="product_details">
+					<div class="product_details_title">
+						<h2><?=$item->name?></h2>
+						<p><?=$item->description?></p>
+					</div>
+					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+						<span class="ti-truck"></span><span>free delivery</span>
+					</div>
+					<!-- <div class="original_price">$629.99</div> -->
+					<div class="product_price"><?=$item->price?>円</div>
+					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+						<span>Quantity:</span>
+						<div class="quantity_selector">
+							<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+							<span id="quantity_value">1</span>
+							<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+						</div>
+						<form action="/cart/add" method="post">
+								<?= csrf_field()?>
+								<input type="hidden" name="item_id" value="<?=$item->id?>">
+								<input type="hidden" id="quantity" name="amount" value="1" >
+								<input type="submit" class="red_button add_to_cart_button" value="カートに追加">
+									<!-- <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div> -->
+						</form>
+						<!-- <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div> -->
+						<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 	
@@ -287,34 +269,12 @@
 
 	<!-- Footer -->
 
-	<footer class="footer">
+<footer class="footer">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-						<ul class="footer_nav">
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer_nav_container">
-						<div class="cr">©2018 All Rights Reserverd. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+						<div class="cr">©2018 All Rights Reserverd. Made by okaasandesu</div>
 					</div>
 				</div>
 			</div>
@@ -331,6 +291,7 @@
 <script src="/plugins/easing/easing.js"></script>
 <script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="/js/single_custom.js"></script>
+<script src="/js/jquery-item.js"></script>
 </body>
 
 </html>

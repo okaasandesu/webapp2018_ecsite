@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,28 +109,45 @@ Route::post("/cart/clear_details",function(){
 });
 
 Route::get("/order",function(){
+    
+    $user = Auth::user();
+    $cartItems = session()->get("CART_ITEMS",[]);
+    $total=0;
+
+    foreach($cartItems as $array=>$value){ 
+        $total+=(($value['item']->price)*($value['amount']));
+    }
+
+    if(empty($user)){
+        return view("auth/login");
+    }else{
+        return view("order",[
+            "user" => $user,
+            "total"=>$total
+        ]
+    
+    );
+    }
     return view("order");
 });
 
 Route::post("/order",function(){
 
 
-    if(request()->get("name") == ""){
-        session()->put("FORM_MESSAGE","名前を入力してください");
-        return redirect("/order");
+    $user = Auth::user();
+    $cartItems = session()->get("CART_ITEMS",[]);
+    $total=0;
+
+    foreach($cartItems as $array=>$value){ 
+        $total+=(($value['item']->price)*($value['amount']));
     }
-    if(request()->get("address") == ""){
-        session()->put("FORM_MESSAGE","住所を入力してください");
-        return redirect("/order");
-    }
-    
     // ここで カートの中身をDBに保存する    
-    DB::insert("INSERT into orders (name,address,tel,email,orders) VALUES (?,?,?,?,?)",[
-        
-        request()->get("name"),
-        request()->get("address"),
-        request()->get("tel"),
-        request()->get("email"),
+    DB::insert("INSERT into orders (name,zip_code,address,price,email,orders) VALUES (?,?,?,?,?,?)",[
+        $user->name,
+        $user->zip_code,
+        $user->address,
+        $total,
+        $user->email,
         json_encode(session()->get("CART_ITEMS"))
     ]);
     
@@ -140,3 +159,15 @@ Route::post("/order",function(){
 Route::get("/order/thanks",function(){
     return view("thanks");
 });
+Auth::routes();
+
+
+/* Route::post('/logout',function(){
+    return redirect("/ECsite");
+}); */
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('register/pre_check', 'Auth\RegisterController@pre_check')->name('register.pre_check');
+Route::get('register/verify/{token}', 'Auth\RegisterController@showForm');
+Route::post('register/main_check', 'Auth\RegisterController@mainCheck')->name('register.main.check');
+Route::post('register/main_register', 'Auth\RegisterController@mainRegister')->name('register.main.registered');
