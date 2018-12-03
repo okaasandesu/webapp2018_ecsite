@@ -133,6 +133,7 @@ Route::get("/order",function(){
 
 Route::post("/order",function(){
 
+
     $user = Auth::user();
     $cartItems = session()->get("CART_ITEMS",[]);
     $total=0;
