@@ -123,7 +123,8 @@ Route::get("/order",function(){
     }else{
         return view("order",[
             "user" => $user,
-            "total"=>$total
+            "total"=>$total,
+            "cartItems"=>$cartItems
         ]
     
     );

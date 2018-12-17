@@ -142,7 +142,6 @@
 
 			</div>
 		</div>
-		
 	<form action="/order" method="POST">
 	<?= csrf_field()?>
 		<table class="table table-striped table-bordered">
